@@ -1,11 +1,11 @@
 package mx.mtk
 
-
-
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
+import grails.plugin.springsecurity.annotation.Secured
 
 @Transactional(readOnly = true)
+@Secured(['ROLE_ADMIN', 'ROLE_USER'])
 class AreaController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
@@ -39,7 +39,7 @@ class AreaController {
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.created.message', args: [message(code: 'area.label', default: 'Area'), areaInstance.id])
+                flash.message = message(code: 'default.created.area.message')
                 redirect areaInstance
             }
             '*' { respond areaInstance, [status: CREATED] }
@@ -66,7 +66,7 @@ class AreaController {
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.updated.message', args: [message(code: 'Area.label', default: 'Area'), areaInstance.id])
+                flash.message = message(code: 'default.updated.area.message')
                 redirect areaInstance
             }
             '*'{ respond areaInstance, [status: OK] }
@@ -85,7 +85,7 @@ class AreaController {
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.deleted.message', args: [message(code: 'Area.label', default: 'Area'), areaInstance.id])
+                flash.message = message(code: 'default.deleted.area.message')
                 redirect action:"index", method:"GET"
             }
             '*'{ render status: NO_CONTENT }
@@ -95,7 +95,7 @@ class AreaController {
     protected void notFound() {
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.not.found.message', args: [message(code: 'area.label', default: 'Area'), params.id])
+                flash.message = message(code: 'default.not.found.area.message', args: [message(code: 'area.label', default: 'Area'), params.id])
                 redirect action: "index", method: "GET"
             }
             '*'{ render status: NOT_FOUND }

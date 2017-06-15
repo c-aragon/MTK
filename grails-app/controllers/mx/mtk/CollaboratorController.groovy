@@ -40,7 +40,7 @@ class CollaboratorController {
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.created.message', args: [message(code: 'collaborator.label', default: 'Collaborator'), collaboratorInstance.id])
+                flash.message = message(code: 'default.created.collaborator.message')
                 redirect collaboratorInstance
             }
             '*' { respond collaboratorInstance, [status: CREATED] }
@@ -67,7 +67,7 @@ class CollaboratorController {
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.updated.message', args: [message(code: 'Collaborator.label', default: 'Collaborator'), collaboratorInstance.id])
+                flash.message = message(code: 'default.updated.collaborator.message')
                 redirect collaboratorInstance
             }
             '*'{ respond collaboratorInstance, [status: OK] }
@@ -86,7 +86,7 @@ class CollaboratorController {
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.deleted.message', args: [message(code: 'Collaborator.label', default: 'Collaborator'), collaboratorInstance.id])
+                flash.message = message(code: 'default.deleted.collaborator.message')
                 redirect action:"index", method:"GET"
             }
             '*'{ render status: NO_CONTENT }
@@ -96,7 +96,7 @@ class CollaboratorController {
     protected void notFound() {
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.not.found.message', args: [message(code: 'collaborator.label', default: 'Collaborator'), params.id])
+                flash.message = message(code: 'default.not.found.collaborator.message', args: [params.id])
                 redirect action: "index", method: "GET"
             }
             '*'{ render status: NOT_FOUND }
