@@ -23,11 +23,11 @@ class BootStrap {
             def col03 = new Collaborator(name:"Ernesto", lastName:"Colman",area: area3).save(flush : true, failOnError : true)
             def col04 = new Collaborator(name:"Fatima", lastName:"Dosantos",area: area4).save(flush : true, failOnError : true)
 
-            def userModificacion = new User(username : "modificacion", password : "12asd34", 
+            def userModificacion = new User(username : "admin", password : "12asd34", 
                 enabled : true, accountExpired : false, 
                 accountLocked : false, passwordExpired : false).save(flush : true, failOnError : true)
 
-            def userConsulta = new User(username : "consulta", password : "12asd34", 
+            def userConsulta = new User(username : "user", password : "12asd34", 
                 enabled : true, accountExpired : false, 
                 accountLocked : false, passwordExpired : false).save(flush : true, failOnError : true)
 
