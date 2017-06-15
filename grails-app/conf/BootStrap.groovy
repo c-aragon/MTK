@@ -18,6 +18,11 @@ class BootStrap {
     		def area3 = new Area(name : "Administrativo").save(flush : true, failOnError : true)
     		def area4 = new Area(name : "Cultura Organizacional").save(flush : true, failOnError : true)
 
+            def col01 = new Collaborator(name:"Carlos", lastName:"Aragon", area: area1).save(flush : true, failOnError : true)
+            def col02 = new Collaborator(name:"David", lastName:"Bernal",area: area2).save(flush : true, failOnError : true)
+            def col03 = new Collaborator(name:"Ernesto", lastName:"Colman",area: area3).save(flush : true, failOnError : true)
+            def col04 = new Collaborator(name:"Fatima", lastName:"Dosantos",area: area4).save(flush : true, failOnError : true)
+
             def userModificacion = new User(username : "modificacion", password : "12asd34", 
                 enabled : true, accountExpired : false, 
                 accountLocked : false, passwordExpired : false).save(flush : true, failOnError : true)
