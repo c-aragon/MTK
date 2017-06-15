@@ -15,6 +15,11 @@ grails run-app -Dgrails.server.port.http=1010
 ```
 La aplicación se ejecutara en el puerto 1010, y se accedera a ella desde [Link](http://localhost:1010/MTK)
 
+Los usuarios creados, fueron:
+
+- admin (password: 12asd34): Usuario con permisos de lectura y escritura.
+- user (password: 12asd34): Usuario con permisos de solo lectura.
+
 ## Para hacer un deploy de la aplicación en un ambiente productivo, se requiere tener instalado
 
 - [Java 7](http://www.oracle.com/technetwork/java/javase/downloads/index.html).
