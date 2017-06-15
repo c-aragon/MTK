@@ -45,7 +45,7 @@
 				<li class="fieldcontain">
 					<span id="area-label" class="property-label"><g:message code="collaborator.area.label" default="Area" /></span>
 					
-						<span class="property-value" aria-labelledby="area-label"><g:link controller="area" action="show" id="${collaboratorInstance?.area?.id}">${collaboratorInstance?.area?.encodeAsHTML()}</g:link></span>
+						<span class="property-value" aria-labelledby="area-label"><g:link controller="area" action="show" id="${collaboratorInstance?.area?.id}">${collaboratorInstance?.area?.name?.encodeAsHTML()}</g:link></span>
 					
 				</li>
 				</g:if>

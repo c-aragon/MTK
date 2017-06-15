@@ -25,7 +25,7 @@
 		<g:message code="collaborator.area.label" default="Area" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:select id="area" name="area.id" from="${mx.mtk.Area.list()}" optionKey="id" required="" value="${collaboratorInstance?.area?.id}" class="many-to-one"/>
+	<g:select id="area" name="area.id" from="${mx.mtk.Area.list()}" optionKey="id" required="" value="${collaboratorInstance?.area?.name}" optionValue="name" class="many-to-one"/>
 
 </div>
 

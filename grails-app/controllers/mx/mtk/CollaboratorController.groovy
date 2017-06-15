@@ -1,11 +1,11 @@
 package mx.mtk
 
-
-
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
+import grails.plugin.springsecurity.annotation.Secured
 
 @Transactional(readOnly = true)
+@Secured(['ROLE_ADMIN', 'ROLE_USER'])
 class CollaboratorController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
@@ -19,6 +19,7 @@ class CollaboratorController {
         respond collaboratorInstance
     }
 
+    @Secured(['ROLE_ADMIN'])
     def create() {
         respond new Collaborator(params)
     }
