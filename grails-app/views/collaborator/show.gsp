@@ -8,53 +8,76 @@
 		<title><g:message code="default.show.collaborator.label" args="[entityName]" /></title>
 	</head>
 	<body>
-		<div class="nav" role="navigation">
-			<ul>
-				<li><g:link class="list" action="index"><g:message code="default.list.collaborator.label" args="[entityName]" /></g:link></li>
-				<li><g:link class="create" action="create"><g:message code="default.new.collaborator.label" args="[entityName]" /></g:link></li>
-			</ul>
-		</div>
-		<div id="show-collaborator" class="content scaffold-show" role="main">
-			<h1><g:message code="default.show.collaborator.label" args="[entityName]" /></h1>
+		<div id="show-collaborator" class="container" role="main">
+			
+			<div class="page-header"> 
+				<h2> <i class="fa fa-credit-card-alt"></i> <g:message code="default.show.collaborator.label"/> </h2> 
+			</div>
+
+			<div class="row"> 
+				<div class="col-md-12"> 
+					<g:link class="btn btn-primary" action="index" resource="${collaboratorInstance}">
+						<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+						Regresar a la lista
+						</g:link>
+
+				</div>
+			</div>
+			
 			<g:if test="${flash.message}">
-			<div class="message" role="status">${flash.message}</div>
+				<div class="message" role="status">${flash.message}</div>
 			</g:if>
-			<ol class="property-list collaborator">
-			
-				<g:if test="${collaboratorInstance?.name}">
-				<li class="fieldcontain">
-					<span id="name-label" class="property-label"><g:message code="collaborator.name.label" default="Name" /></span>
-					
-						<span class="property-value" aria-labelledby="name-label"><g:fieldValue bean="${collaboratorInstance}" field="name"/></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${collaboratorInstance?.lastName}">
-				<li class="fieldcontain">
-					<span id="lastName-label" class="property-label"><g:message code="collaborator.lastName.label" default="Last Name" /></span>
-					
-						<span class="property-value" aria-labelledby="lastName-label"><g:fieldValue bean="${collaboratorInstance}" field="lastName"/></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${collaboratorInstance?.area}">
-				<li class="fieldcontain">
-					<span id="area-label" class="property-label"><g:message code="collaborator.area.label" default="Area" /></span>
-					
-						<span class="property-value" aria-labelledby="area-label"><g:link controller="area" action="show" id="${collaboratorInstance?.area?.id}">${collaboratorInstance?.area?.name?.encodeAsHTML()}</g:link></span>
-					
-				</li>
-				</g:if>
-			
-			</ol>
-			<g:form url="[resource:collaboratorInstance, action:'delete']" method="DELETE">
-				<fieldset class="buttons">
-					<g:link class="edit" action="edit" resource="${collaboratorInstance}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
-					<g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
-				</fieldset>
-			</g:form>
+			<br>
+			<br>
+			<div class="form-group">
+				<div class="row">
+					<div class="col-lg-6">
+						<g:if test="${collaboratorInstance?.name}">
+							<div class="form-group ${hasErrors(bean: collaboratorInstance, field: 'name', 'error')} required">
+								<div class="input-group">
+									<span class="input-group-addon" id="basic-addon1"><g:message code="collaborator.name.label" default="Name" /></span>
+									<input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1" readOnly value="${collaboratorInstance?.name}">
+								</div>
+
+							</div>
+						</g:if>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-6">
+						<g:if test="${collaboratorInstance?.lastName}">
+							<div class="form-group ${hasErrors(bean: collaboratorInstance, field: 'name', 'error')} required">
+								<div class="input-group">
+									<span class="input-group-addon" id="basic-addon1"><g:message code="collaborator.lastName.label" default="Name" /></span>
+									<input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1" readOnly value="${collaboratorInstance?.lastName}">
+								</div>
+							</div>
+						</g:if>
+					</div>
+				</div>
+				<div class="row"> 
+					<div class="col-lg-6">
+						<g:if test="${collaboratorInstance?.area?.name}">
+							<div class="form-group ${hasErrors(bean: collaboratorInstance, field: 'name', 'error')} required">
+								<div class="input-group">
+									<span class="input-group-addon" id="basic-addon1"><g:message code="collaborator.name.label" default="Name" /></span>
+									<input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1" readOnly value="${collaboratorInstance?.area?.name}">
+								</div>
+
+							</div>
+						</g:if>
+					</div>		
+				</div>
+
+				<div class="row"> 
+					<div class="form-inline form"> 
+						<g:form url="[resource:collaboratorInstance, action:'delete']" method="DELETE">
+							<g:link class="btn btn-primary" action="edit" resource="${collaboratorInstance}"><g:message code="default.button.edit.label" default="Edit" /> <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> </g:link>
+							<g:actionSubmit class="btn btn-danger" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" /> 
+						</g:form>		
+					</div>
+				</div>			
+			</div>
 		</div>
 	</body>
 </html>

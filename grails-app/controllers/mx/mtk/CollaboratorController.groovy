@@ -12,11 +12,26 @@ class CollaboratorController {
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        respond Collaborator.list(params), model:[collaboratorInstanceCount: Collaborator.count()]
+
+        def collaboratorList;
+
+        if(params.area?.id && Integer.valueOf(params.area?.id) != 0){
+            def areaInstance = Area.get(Integer.valueOf(params.area?.id))
+            collaboratorList = Collaborator.findAllByArea(areaInstance)
+            params.area.id = params.area?.id
+            [collaboratorInstanceCount: collaboratorList.size(), collaboratorInstanceList : collaboratorList, params: params]
+        }else{
+            respond Collaborator.list(params), model:[collaboratorInstanceCount: Collaborator.count()]
+        }
+
     }
 
     def show(Collaborator collaboratorInstance) {
         respond collaboratorInstance
+    }
+
+    def search() { 
+         respond Collaborator.list()       
     }
 
     @Secured(['ROLE_ADMIN'])

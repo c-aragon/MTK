@@ -8,16 +8,49 @@ s
 		<title><g:message code="default.list.collaborator.label" args="[entityName]" /></title>
 	</head>
 	<body>
-		<div class="nav" role="navigation">
-			<ul>
-				<li><g:link class="create" action="create"><g:message code="default.new.collaborator.label" /></g:link></li>
-			</ul>
-		</div>
-		<div id="list-collaborator" class="content scaffold-list" role="main">
+		<div id="list-collaborator" class="container" role="main">
 			<h1><g:message code="default.list.collaborator.label" args="[entityName]" /></h1>
+			<br>
+			<div class="row">
+				<div class="col-md-9"> 
+					<div class="form-inline form"> 
+						<g:form name="myForm" url="[action:'index',controller:'collaborator']">
+							<div class="form-group"> 
+								<label><g:message code="default.combo.collaborator.label" /></label> 
+								<g:select class="form-control" 
+									id="area" 
+									name="area.id" 
+									from="${mx.mtk.Area.list()}" 
+									optionKey="id" 
+									required="" 
+									value="${params?.area?.id}" 
+									optionValue="name"
+									noSelection="['0':'Todas las áreas']"/>
+							</div> 
+							<button class="btn btn-primary" ><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button> 
+
+							<g:link class="btn btn-primary" action="index" resource="${collaboratorInstance}">
+								<span class="glyphicon glyphicon-remove" aria-hidden="true"></span> 								  
+							</g:link>
+
+							<g:link class="btn btn-primary" action="search" resource="${collaboratorInstance}">
+								<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>Búsqueda perzonalizada
+							</g:link>
+
+						</g:form>
+					</div> 
+				</div>
+				<div class="col-md-3">
+					<g:link class="btn btn-primary" action="create" resource="${collaboratorInstance}"> Crear </g:link>					
+				</div>
+			</div>
+
 			<g:if test="${flash.message}">
 				<div class="message" role="status">${flash.message}</div>
 			</g:if>
+
+			<br>
+
 			<table class="table table-hover">
 			<thead>
 					<tr>
